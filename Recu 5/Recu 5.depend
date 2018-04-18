@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1522814137 source:c:\users\eze\desktop\problemas recu\recu 5\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
