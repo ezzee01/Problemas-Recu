@@ -3,20 +3,22 @@
 #include <conio.h>
 #include <string.h>
 
-int tamanio = 0;
-
-void validarNombre(char [], int);
+void validarNombre(char[], int);
 void validarPaginas(int[], int);
 void validarVentas(int[], int);
-void validarTemas(char [][14], int);
+void validarTemas(char[], int);
 
 int main()
 {
-
+    int tamanio = 0;
     char nombres [tamanio][20];
     int paginas [tamanio];
     int ventas [tamanio];
     char temas [tamanio][14];
+    char auxNombres [50];
+    int auxPaginas [tamanio];
+    int auxVentas [tamanio];
+    char auxTemas [50];
     char seguir = 's';
 
     while(seguir == 's')
@@ -24,13 +26,9 @@ int main()
         tamanio++;
 
         printf("Ingrese nombre del libro: ");
-        for(int i = 0 ; i < tamanio ; i++)
-        {
-            fflush(stdin);
-            gets(nombres);
-            validarNombre(nombres, tamanio);
-            //validarNombre(gets(nombres), tamanio);
-        }
+        fflush(stdin);
+        gets(auxNombres);
+        validarNombre(auxNombres, 20);
 
         printf("Ingrese cantidad de paginas: ");
         for(int i = 0 ; i < tamanio ; i++)
@@ -47,12 +45,10 @@ int main()
         }
 
         printf("Ingrese tema: ");
-        for(int i = 0 ; i < tamanio ; i++)
-        {
-            fflush(stdin);
-            //gets(temas);
-            //validarTemas(temas, tamanio);
-        }
+        fflush(stdin);
+        gets(auxTemas);
+        validarTemas(auxTemas, 14);
+
     }
 
 
@@ -63,15 +59,13 @@ int main()
 
 void validarNombre(char nomb[], int tam)
 {
-    for(int i = 0 ; i < tam; i++)
+    while(strlen(nomb) > tam)
     {
-        while(strlen(nomb[i]) > 20)
-        {
-            printf("Error,demasiado largo. Reingrese: ");
-            fflush(stdin);
-            gets(nomb[i]);
-        }
+        printf("Error,demasiado largo. Reingrese: ");
+        fflush(stdin);
+        gets(nomb);
     }
+
 }
 
 void validarPaginas(int pag[], int tam)
@@ -98,15 +92,12 @@ void validarVentas(int ven[], int tam)
     }
 }
 
-void validarTemas(char tem[][14], int tam)
+void validarTemas(char tem[], int tam)
 {
-    for(int i = 0 ; i < tam; i++)
+    while(strlen(tem[i]) > tam)
     {
-        while(strlen(tem[i]) > 14)
-        {
-            printf("Error,demasiado largo. Reingrese: ");
-            fflush(stdin);
-            gets(tem[i]);
-        }
+        printf("Error,demasiado largo. Reingrese: ");
+        fflush(stdin);
+        gets(tem);
     }
 }
