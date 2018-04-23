@@ -4,54 +4,55 @@
 #include <string.h>
 
 void validarNombre(char[], int);
-void validarPaginas(int[], int);
-void validarVentas(int[], int);
+int validarPaginas(int);
+int validarVentas(int);
 void validarTemas(char[], int);
 
 int main()
 {
+    //ESCALARES
     int tamanio = 0;
+    char seguir = 's';
+    int contPares = 0;
+    //ARRAYS
     char nombres [tamanio][20];
     int paginas [tamanio];
     int ventas [tamanio];
     char temas [tamanio][14];
+    //AUXILIARES
     char auxNombres [50];
-    int auxPaginas [tamanio];
-    int auxVentas [tamanio];
+    int auxPaginas;
+    int auxVentas;
     char auxTemas [50];
-    char seguir = 's';
 
     while(seguir == 's')
     {
         tamanio++;
-
-        printf("Ingrese nombre del libro: ");
-        fflush(stdin);
-        gets(auxNombres);
-        validarNombre(auxNombres, 20);
-
-        printf("Ingrese cantidad de paginas: ");
         for(int i = 0 ; i < tamanio ; i++)
         {
-            scanf("%d", &paginas[i]);
-            validarPaginas(paginas, tamanio);
+            printf("Ingrese nombre: ");
+            fflush(stdin);
+            gets(auxNombres);
+            validarNombre(auxNombres, 20);
+            strcpy(nombres[tamanio-1], auxNombres);
+
+            printf("Ingrese cantidad de paginas: ");
+            scanf("%d", &auxPaginas);
+            paginas[tamanio-1] = validarPaginas(auxPaginas);
+
+            printf("Ingrese cantidad de ventas: ");
+            scanf("%d", &auxVentas);
+            ventas[tamanio-1] = validarVentas(auxVentas);
+
+            printf("Ingrese tema: ");
+            fflush(stdin);
+            gets(auxTemas);
+            validarTemas(auxTemas, 14);
+            strcpy(temas[tamanio-1],auxTemas);
+
+            if()
         }
-
-        printf("Ingrese cantidad de ventas: ");
-        for(int i = 0 ; i < tamanio ; i++)
-        {
-            scanf("%d", &ventas[i]);
-            validarVentas(ventas, tamanio);
-        }
-
-        printf("Ingrese tema: ");
-        fflush(stdin);
-        gets(auxTemas);
-        validarTemas(auxTemas, 14);
-
     }
-
-
 
     getch();
     return 0;
@@ -65,36 +66,31 @@ void validarNombre(char nomb[], int tam)
         fflush(stdin);
         gets(nomb);
     }
-
 }
 
-void validarPaginas(int pag[], int tam)
+int validarPaginas(int pag)
 {
-    for(int i = 0; i < tam ; i++)
+    while(pag < 0)
     {
-        while(pag[i] < 0)
-        {
-            printf("Error. Reingrese: ");
-            scanf("%d", &pag[i]);
-        }
+        printf("Error. Reingrese: ");
+        scanf("%d", &pag);
     }
+    return pag;
 }
 
-void validarVentas(int ven[], int tam)
+int validarVentas(int ven)
 {
-    for(int i = 0; i < tam ; i++)
+    while(ven < 0)
     {
-        while(ven[i] < 0)
-        {
-            printf("Error. Reingrese: ");
-            scanf("%d", &ven[i]);
-        }
+        printf("Error. Reingrese: ");
+        scanf("%d", &ven);
     }
+    return ven;
 }
 
 void validarTemas(char tem[], int tam)
 {
-    while(strlen(tem[i]) > tam)
+    while(strlen(tem) > tam)
     {
         printf("Error,demasiado largo. Reingrese: ");
         fflush(stdin);
