@@ -7,13 +7,17 @@ void validarNombre(char[], int);
 int validarPaginas(int);
 int validarVentas(int);
 void validarTemas(char[], int);
+int contarPar(int[], int);
+int contarImpar(int[], int);
+int buscarCero(int[], int);
 
 int main()
 {
     //ESCALARES
     int tamanio = 0;
     char seguir = 's';
-    int contPares = 0;
+    int pares;
+    int impares;
     //ARRAYS
     char nombres [tamanio][20];
     int paginas [tamanio];
@@ -49,10 +53,12 @@ int main()
             gets(auxTemas);
             validarTemas(auxTemas, 14);
             strcpy(temas[tamanio-1],auxTemas);
-
-            if()
         }
     }
+    //Punto A
+    pares = contarPar(paginas, tamanio);
+    //Punto B
+    impares = contarImpar(paginas, tamanio);
 
     getch();
     return 0;
@@ -96,4 +102,35 @@ void validarTemas(char tem[], int tam)
         fflush(stdin);
         gets(tem);
     }
+}
+
+int contarPar(int num[], int tam)
+{
+    int contador = 0;
+    for(int i = 0; i<tam ; i++)
+    {
+        if(num[i] % 2 == 0)
+        {
+            contador++;
+        }
+    }
+    return contador;
+}
+
+int contarImpar(int num[], int tam)
+{
+    int contador = 0;
+    for(int i = 0; i<tam ; i++)
+    {
+        if(num[i] % 2 != 0)
+        {
+            contador++;
+        }
+    }
+    return contador;
+}
+
+int buscarCero(int[], int)
+{
+
 }
